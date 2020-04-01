@@ -1,4 +1,6 @@
 # VendingMachine
+### 課題内容
+http://devtesting.jp/tddbc/?TDDBC大阪3.0%2F課題
 
 ### 機能一覧
 - 投入（金額）
