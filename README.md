@@ -13,6 +13,13 @@ http://devtesting.jp/tddbc/?TDDBC大阪3.0%2F課題
   - 大須賀
   - 高木
 
+- TeamA
+  - 松尾
+  - 高木
+- TeamB
+  - 松本
+  - 大須賀
+
 ### 開発環境
 `Ruby: 2.6.5`
 
