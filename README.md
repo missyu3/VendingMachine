@@ -72,6 +72,8 @@ git clone
 1. もう片方のチームが確認を行い、Margeを行う。
   - Margeを行う際はコメントにclose #イシュIDをつける。
 
+## クラス図
+![クラス図](document/class.png)
 
 ## 機能一覧
 - 関数名
