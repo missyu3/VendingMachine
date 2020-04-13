@@ -10,7 +10,7 @@ class JuiceStocker
     end
 
     def pull_stock(drink_name)
-        @stock_info[:drink_name][1] = @stock_info[:drink_name][1] - 1
+        @stock_info[drink_name][1] = @stock_info[drink_name][1] - 1
     end
 end
 
