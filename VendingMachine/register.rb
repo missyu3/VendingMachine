@@ -1,14 +1,18 @@
 class Register
   attr_reader :total_money, :sale_amount
-  MONEY = [10, 50, 100, 500, 1000]
+  MONEY = [10, 50, 100, 500, 1000, 2000]
 
   def initialize
     @total_money = 0
     @sale_amount = 0
   end
 
+  def check_money?(money)
+    MONEY.include?(money)
+  end
+
   def insert(money)
-    @total_money += money if MONEY.include?(money)
+    @total_money += money
   end
 
   def refund
