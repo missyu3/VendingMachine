@@ -21,9 +21,12 @@ class VendingMachine
 
   def purchasable_drink_names
     purchasable_drink = []
-    @stock_info.stock_info.each do |stock|
-#      if stock
+    @stock_info.stock_info.each do |key,value|
+      next if value[1] <= 0
+      next if @register.total_money < value[0] 
+      purchasable_drink << key.to_s
     end
+    purchasable_drink
   end
   
 end

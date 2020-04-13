@@ -9,7 +9,7 @@ class JuiceStocker < ErrorMessage
 
     def initialize_drink(name,price)
       if @stock_info.has_key?(name.intern)
-        @error.queue("すでに登録されているジュースです。")
+        queue("すでに登録されているジュースです。")
       else
         drink = change_hash(name, price: price)
         @stock_info.merge!(drink)
@@ -21,7 +21,7 @@ class JuiceStocker < ErrorMessage
       if @stock_info.has_key?(name.intern)
         @stock_info[name.intern][1] += stock_count
       else
-        set("initialize_drinkを先に実行してください")
+        queue("initialize_drinkを先に実行してください")
       end
       dequeue
     end
@@ -30,7 +30,7 @@ class JuiceStocker < ErrorMessage
       if @stock_info.has_key?(name.intern)
         @stock_info[name.intern][0] = price        
       else
-        set("initialize_drinkを先に実行してください")
+        queue("initialize_drinkを先に実行してください")
       end
       dequeue
     end
