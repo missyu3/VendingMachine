@@ -7,8 +7,12 @@ class Register
     @sale_amount = 0
   end
 
+  def check_money?(money)
+    MONEY.include?(money)
+  end
+
   def insert(money)
-    @total_money += money if MONEY.include?(money)
+    @total_money += money
   end
 
   def refund
