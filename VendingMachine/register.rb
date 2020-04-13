@@ -1,6 +1,6 @@
 class Register
   attr_reader :total_money, :sale_amount
-  MONEY = [10, 50, 100, 500, 1000, 2000]
+  MONEY = [10, 50, 100, 500, 1000]
 
   def initialize
     @total_money = 0
