@@ -22,6 +22,7 @@ class Register
   end
 
   def add_sale(sale)
+    @total_money -= sale
     @sale_amount += sale
   end
 
