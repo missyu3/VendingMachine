@@ -24,7 +24,7 @@ class VendingMachine
   end
 
   def add_drink(name,stock_count)
-    @stock_info.add_drink(name,stock_count)
+    @stock_info.add(name,stock_count)
   end
 
   def set_price(name,price)
