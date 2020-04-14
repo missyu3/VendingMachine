@@ -7,7 +7,7 @@ class JuiceStocker < ErrorMessage
         super
     end
 
-    def initialize_drink(name,price)
+    def initialize_item(name,price)
       if @stock_info.has_key?(name.intern)
         queue("すでに登録されているジュースです。")
       else
@@ -17,7 +17,7 @@ class JuiceStocker < ErrorMessage
       dequeue
     end
 
-    def add_drink(name,stock_count)
+    def add(name,stock_count)
       if @stock_info.has_key?(name.intern)
         @stock_info[name.intern][1] += stock_count
       else
@@ -35,14 +35,42 @@ class JuiceStocker < ErrorMessage
       dequeue
     end
 
+    def get_price(name)
+      @stock_info[name.intern][0]
+    end
+
     def pull_stock(name)
         @stock_info[name.intern][1] -= 1
     end
+
+    def purchasable?(name,total_money)
+      info = @stock_info[name.intern]
+      purchasable_item?(info,total_money)
+    end
+
+    def purchasable_names(total_money)
+      purchasable_names = []
+      @stock_info.each do |key,value|
+        next unless purchasable_item?(value,total_money)
+        purchasable_names << key.to_s
+      end
+      purchasable_names
+    end
+
     
+    private
     def change_hash(name, price: 0, stock_count: 0)
       drink = Hash.new
       drink[name.intern] = [price, stock_count]
       drink
     end
+
+    def purchasable_item?(item,total_money)
+      return false unless item 
+      return false if item[1] <= 0
+      return false if total_money < item[0] 
+      true
+    end
+
 end
 
