@@ -6,6 +6,18 @@ class VendingMachine
     @stock_info = JuiceStocker.new
     @register = Register.new
   end
+
+  def stock_info
+    @stock_info.stock_info.keys
+  end
+
+  def total_money
+    @register.total_money
+  end
+
+  def sale_amount
+    @register.sale_amount
+  end
   
   def initialize_drink(name,price)
     @stock_info.initialize_drink(name,price)
@@ -19,6 +31,19 @@ class VendingMachine
     @stock_info.set_price(name,price)
   end
 
+  def insert_money(money)
+    return money unless @register.check_money?(money)
+    @register.insert(money)
+  end
+
+  def purchasable?(name)
+    info = @stock_info.stock_info[name.intern]
+    return false unless info 
+    return false if info[1] <= 0
+    return false if @register.total_money < info[0] 
+    true
+  end
+
   def purchasable_drink_names
     purchasable_drink = []
     @stock_info.stock_info.each do |key,value|
@@ -29,4 +54,14 @@ class VendingMachine
     purchasable_drink
   end
   
+  def purchase(name)
+    return nil unless purchasable?(name)
+    @stock_info.pull_stock(name)
+    info = @stock_info.stock_info[name.intern]
+    @register.add_sale(info[0])
+    @register.refund
+  end
+
+
+
 end
