@@ -20,7 +20,7 @@ class JuiceStocker < ErrorMessage
       if @stock_info.has_key?(name.intern)
         @stock_info[name.intern][1] += stock_count
       else
-        queue("initialize_drinkを先に実行してください")
+        queue("initialize_itemを先に実行してください")
       end
       dequeue
     end
@@ -29,7 +29,7 @@ class JuiceStocker < ErrorMessage
       if @stock_info.has_key?(name.intern)
         @stock_info[name.intern][0] = price        
       else
-        queue("initialize_drinkを先に実行してください")
+        queue("initialize_itemを先に実行してください")
       end
       dequeue
     end
