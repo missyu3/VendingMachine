@@ -8,7 +8,7 @@ class VendingMachine
   end
 
   def stock_info
-    @stock_info.stock_info.keys
+    @stock_info.desplay_stock_info
   end
 
   def total_money
@@ -23,7 +23,7 @@ class VendingMachine
     @stock_info.initialize_item(name,price)
   end
 
-  def add_drink(name,stock_count)
+  def add(name,stock_count)
     @stock_info.add(name,stock_count)
   end
 
