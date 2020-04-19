@@ -1,6 +1,5 @@
 require_relative  './error_message'
 class JuiceStocker < ErrorMessage
-  attr_reader :stock_info, :error
 
     def initialize
         @stock_info = Hash.new
@@ -57,6 +56,13 @@ class JuiceStocker < ErrorMessage
       purchasable_names
     end
 
+    def desplay_stock_info
+      @stock_info.each do |key,value|
+        puts "ドリンク名称:#{key}"
+        puts "価格:#{value[0]}円"
+        puts "在庫量:#{value[1]}"
+      end
+    end
     
     private
     def change_hash(name, price: 0, stock_count: 0)

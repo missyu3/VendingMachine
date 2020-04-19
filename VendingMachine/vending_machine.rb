@@ -8,7 +8,7 @@ class VendingMachine
   end
 
   def stock_info
-    @stock_info.stock_info.keys
+    @stock_info.desplay_stock_info
   end
 
   def total_money
