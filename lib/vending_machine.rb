@@ -32,7 +32,7 @@ class VendingMachine
   end
 
   def insert_money(money)
-    return money unless @register.check_money?(money)
+    return puts"#{money}は使用できないお金です。" unless @register.check_money?(money)
     @register.insert(money)
   end
 
