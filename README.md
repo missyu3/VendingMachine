@@ -3,6 +3,60 @@
 ## 課題内容
 http://devtesting.jp/tddbc/?TDDBC大阪3.0%2F課題
 
+## 使用方法
+1. ファイルの読み込み
+    ```
+    require './lib/vending_machine'
+    ```
+1. インスタンス生成
+    ```
+    machine = VendingMachine.new
+    ```
+1. 商品の登録を行う
+    ```
+    machine.initialize_item("cola",120)
+    machine.initialize_item("redbull",200)
+    machine.initialize_item("water",100)
+    ```
+1. 商品の在庫を補充する
+    ```
+    machine.add("cola",5)
+    machine.add("redbull",6)
+    machine.add("water",7)
+    ```
+1. お金を投入する
+    ```
+    machine.insert_money(1000)
+    ＃ 投入金額の合計が表示されます
+    ```
+1. 投入金額の合計を確認する
+    ```
+    machine.total_money
+    ```
+1. 購入可能なドリンクの一覧を取得する
+    ```
+    machine.purchasable_names
+    ＃ 購入可能なドリンクの一覧が出力されます
+    ```
+1. 指定したドリンクが購入可能かを取得する
+    ```
+    machine.purchasable?("cola")
+    ＃ 購入可能か表示されます
+    ```
+1. ドリンクを購入する
+    ```
+    machine.purchase("cola")
+    # お釣りが出力されます
+    ```
+1. 在庫を確認する
+    ```
+    machine.stock_info
+    ```
+1. 売り上げ金額を確認する
+    ```
+    machine.sale_amount
+    ```
+
 ## 開発
 ### 開発体制
 - leader
@@ -73,90 +127,5 @@ git clone
   - Margeを行う際はコメントにclose #イシュIDをつける。
 
 ## クラス図
+要修正
 ![クラス図](document/class.png)
-
-## 機能一覧
-- 関数名
-  - stock_info
-- 内容
-  - 自動販売機のなかにある飲み物情報を表示してくれる。
-- 引数
-  - なし
-- 返り値
-  - 自動販売機にある飲み物情報
-
-- 関数名
-  - insert
-- 内容
-  - 入金
-- 引数
-  - お金
-- 返り値
-  - 自動販売機が許可しているお金か
-
-- 関数名
-  - total
-- 内容
-  - 投入金額の合計
-- 引数
-  - なし
-- 返り値
-  - なし
-
-- 関数名
-  - refund
-- 内容
-  - 返金
-- 引数
-  - なし
-- 返り値
-  - 返金額
-
-- 関数名
-  - purchasable_drink_names
-- 内容
-  - 購入できるドリンク一覧
-- 引数
-  - なし
-- 返り値
-  - 購入できるドリンク名
-
-- 関数名
-パーチャサブる
-  - purchasable?
-- 内容
-  - 引数のドリンクが購入できるか？
-- 引数
-  - ドリンク名
-- 返り値
-  - 購入できるか
-
-- 関数名
-パーちゃす
-  - purchase
-- 内容
-  - 引数のドリンクを購入する
-- 引数
-  - ドリンク名
-- 返り値
-  - 購入できない場合　Nil
-  - 購入できる場合　釣り銭
-
-
-- 関数名
-  - add_drink
-- 内容
-  - 在庫に飲み物情報を追加している
-- 引数
-  - 飲み物情報
-- 返り値
-  - なし
-
-- 関数名
-  - sale_amount
-- 内容
-  - 売上金
-- 引数
-  - なし
-- 返り値
-  - なし
