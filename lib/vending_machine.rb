@@ -27,17 +27,13 @@ class VendingMachine
     @stock_info.add(name,stock_count)
   end
 
-  def set_price(name,price)
-    @stock_info.set_price(name,price)
+  def change_price(name,price)
+    @stock_info.change_price(name,price)
   end
 
   def insert_money(money)
     return money unless @register.check_money?(money)
     @register.insert(money)
-  end
-
-  def purchasable?(name)
-    @stock_info.purchasable?(name,@register.total_money)
   end
 
   def purchasable_names
@@ -52,4 +48,7 @@ class VendingMachine
     @register.refund
   end
 
+  def purchasable?(name)
+    @stock_info.purchasable?(name,@register.total_money)
+  end
 end
