@@ -58,6 +58,7 @@ class JuiceStocker
         puts "ドリンク名称:#{key}"
         puts "価格:#{value[0]}円"
         puts "在庫量:#{value[1]}"
+        puts "ーーーーーーーーーーー"
       end
     end
     
