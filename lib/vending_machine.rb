@@ -3,12 +3,12 @@ class VendingMachine
   require_relative  './juice_stocker'
 
   def initialize
-    @stock_info = JuiceStocker.new
+    @stocker = JuiceStocker.new
     @register = MoneyRegister.new
   end
 
   def stock_info
-    @stock_info.desplay_stock_info
+    @stocker.desplay_stock_info
   end
 
   def total_money
@@ -20,15 +20,15 @@ class VendingMachine
   end
 
   def initialize_item(name,price)
-    @stock_info.initialize_item(name,price)
+    @stocker.initialize_item(name,price)
   end
 
   def add(name,stock_count)
-    @stock_info.add(name,stock_count)
+    @stocker.add(name,stock_count)
   end
 
   def change_price(name,price)
-    @stock_info.change_price(name,price)
+    @stocker.change_price(name,price)
   end
 
   def insert_money(money)
@@ -36,18 +36,18 @@ class VendingMachine
   end
 
   def purchasable_names
-    @stock_info.purchasable_names(@register.total_money)
+    @stocker.purchasable_names(@register.total_money)
   end
 
   def purchase(name)
     return nil unless purchasable?(name)
-    @stock_info.pull_stock(name)
-    price = @stock_info.get_price(name)
+    @stocker.pull_stock(name)
+    price = @stocker.get_price(name)
     @register.add_sale(price)
     @register.refund
   end
 
   def purchasable?(name)
-    @stock_info.purchasable?(name,@register.total_money)
+    @stocker.purchasable?(name,@register.total_money)
   end
 end
