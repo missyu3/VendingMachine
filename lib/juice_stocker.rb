@@ -70,6 +70,10 @@ class JuiceStocker
     end
 
     def desplay_stock_info
+      puts <<~TEXT
+        商品の在庫は以下の通りです。
+        ーーーーーーーーーーー
+        TEXT
       @stock.each do |key,value|
         puts <<~TEXT
           ドリンク名称:#{key}
