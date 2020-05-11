@@ -21,7 +21,7 @@ class MoneyRegister
   def refund
     money = @total_money
     @total_money = 0
-    money
+    puts "お釣りは#{money}円です。"
   end
 
   def add_sale(sale)
