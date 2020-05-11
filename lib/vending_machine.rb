@@ -1,7 +1,7 @@
 class VendingMachine
   require_relative  './money_register'
   require_relative  './juice_stocker'
-  
+
   def initialize
     @stock_info = JuiceStocker.new
     @register = MoneyRegister.new
@@ -18,7 +18,7 @@ class VendingMachine
   def sale_amount
     @register.sale_amount
   end
-  
+
   def initialize_item(name,price)
     @stock_info.initialize_item(name,price)
   end
@@ -32,14 +32,13 @@ class VendingMachine
   end
 
   def insert_money(money)
-    return puts"#{money}は使用できないお金です。" unless @register.check_money?(money)
-    @register.insert(money)
+    @register.insert(money) if @register.check_money?(money)
   end
 
   def purchasable_names
     @stock_info.purchasable_names(@register.total_money)
   end
-  
+
   def purchase(name)
     return nil unless purchasable?(name)
     @stock_info.pull_stock(name)
