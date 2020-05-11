@@ -65,6 +65,7 @@ class JuiceStocker
         next unless purchasable_item?(value,total_money)
         purchasable_names << key.to_s
       end
+      puts ("以下が購入可能です。")
       purchasable_names
     end
 
