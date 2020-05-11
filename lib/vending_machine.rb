@@ -1,10 +1,10 @@
 class VendingMachine
-  require_relative  './register'
+  require_relative  './money_register'
   require_relative  './juice_stocker'
   
   def initialize
     @stock_info = JuiceStocker.new
-    @register = Register.new
+    @register = MoneyRegister.new
   end
 
   def stock_info
