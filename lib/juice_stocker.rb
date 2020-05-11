@@ -65,10 +65,15 @@ class JuiceStocker
     private
 
     def purchasable_item?(item,total_money)
-      return false unless item 
-      return false if item[1] <= 0
-      return false if total_money < item[0] 
-      true
+      return item && has_stock?(item) && enough_money?(item,total_money)
+    end
+
+    def has_stock?(item)
+      item[1] > 0
+    end
+
+    def enough_money?(item,total_money)
+      total_money >= item[0] 
     end
 
 end
