@@ -1,4 +1,4 @@
-class Register
+class MoneyRegister
   attr_reader :total_money, :sale_amount
   MONEY = [10, 50, 100, 500, 1000]
 
