@@ -51,6 +51,7 @@ class JuiceStocker
 
     def pull_stock(name)
         @stock[name.intern][1] -= 1
+        puts ("#{name}を購入しました。")
     end
 
     def purchasable?(name,total_money)
