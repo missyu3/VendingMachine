@@ -1,67 +1,89 @@
 class JuiceStocker
 
     def initialize
-        @stock_info = Hash.new
+        @stock = Hash.new
     end
 
     def initialize_item(name,price)
-      if @stock_info.has_key?(name.intern)
-        puts("すでに登録されているジュースです。")
-        puts("残量の追加はaddを使用してください")
+      if @stock.has_key?(name.intern)
+        puts <<~TEXT
+          すでに登録されているジュースです。
+          在庫の追加はaddを使用してください。
+        TEXT
       else
         drink = Hash.new
         drink[name.intern] = [price, 0]
-        @stock_info.merge!(drink)
+        @stock.merge!(drink)
+        puts <<~TEXT
+          #{name}を登録しました。
+          addを実行し、在庫を追加してください。
+        TEXT
       end
     end
 
     def add(name,stock_count)
-      if @stock_info.has_key?(name.intern)
-        @stock_info[name.intern][1] += stock_count
+      if @stock.has_key?(name.intern)
+        @stock[name.intern][1] += stock_count
+        puts ("在庫に#{name}を#{stock_count}本追加しました。")
       else
-        puts("initialize_itemを先に実行してください")
+        puts <<~TEXT
+          #{name}はまだ登録されていません。
+          initialize_itemを先に実行してください。
+        TEXT
       end
     end
 
     def change_price(name,price)
-      if @stock_info.has_key?(name.intern)
-        @stock_info[name.intern][0] = price        
+      if @stock.has_key?(name.intern)
+        @stock[name.intern][0] = price
+        puts ("#{name}の値段を#{price}に変更しました。")
       else
-        puts("initialize_itemを先に実行してください")
+        puts <<~TEXT
+          #{name}はまだ登録されていません。
+          initialize_itemを先に実行してください。
+        TEXT
       end
     end
 
     def get_price(name)
-      @stock_info[name.intern][0]
+      @stock[name.intern][0]
     end
 
     def pull_stock(name)
-        @stock_info[name.intern][1] -= 1
+        @stock[name.intern][1] -= 1
+        puts ("#{name}を購入しました。")
     end
 
     def purchasable?(name,total_money)
-      info = @stock_info[name.intern]
-      purchasable_item?(info,total_money)
+      item = @stock[name.intern]
+      purchasable_item?(item,total_money)
     end
 
     def purchasable_names(total_money)
       purchasable_names = []
-      @stock_info.each do |key,value|
+      @stock.each do |key,value|
         next unless purchasable_item?(value,total_money)
         purchasable_names << key.to_s
       end
+      puts ("以下が購入可能です。")
       purchasable_names
     end
 
     def desplay_stock_info
-      @stock_info.each do |key,value|
-        puts "ドリンク名称:#{key}"
-        puts "価格:#{value[0]}円"
-        puts "在庫量:#{value[1]}"
-        puts "ーーーーーーーーーーー"
+      puts <<~TEXT
+        商品の在庫は以下の通りです。
+        ーーーーーーーーーーー
+        TEXT
+      @stock.each do |key,value|
+        puts <<~TEXT
+          ドリンク名称:#{key}
+          価格:#{value[0]}円
+          在庫量:#{value[1]}
+          ーーーーーーーーーーー
+        TEXT
       end
     end
-    
+
     private
 
     def purchasable_item?(item,total_money)
@@ -73,8 +95,7 @@ class JuiceStocker
     end
 
     def enough_money?(item,total_money)
-      total_money >= item[0] 
+      total_money >= item[0]
     end
 
 end
-

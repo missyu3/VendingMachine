@@ -8,17 +8,20 @@ class MoneyRegister
   end
 
   def check_money?(money)
-    MONEY.include?(money)
+    judge_money = MONEY.include?(money)
+    puts ("#{money}円は使用できません。") unless judge_money
+    judge_money
   end
 
   def insert(money)
     @total_money += money
+    puts ("#{money}円投入しました。")
   end
 
   def refund
     money = @total_money
     @total_money = 0
-    money
+    puts "お釣りは#{money}円です。"
   end
 
   def add_sale(sale)
