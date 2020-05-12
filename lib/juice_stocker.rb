@@ -24,7 +24,7 @@ class JuiceStocker
     def add(name,stock_count)
       if @stock.has_key?(name.intern)
         @stock[name.intern][1] += stock_count
-        puts ("在庫に#{name}を#{stock_count}本追加しました。")
+        puts "在庫に#{name}を#{stock_count}本追加しました。"
       else
         puts <<~TEXT
           #{name}はまだ登録されていません。
@@ -36,7 +36,7 @@ class JuiceStocker
     def change_price(name,price)
       if @stock.has_key?(name.intern)
         @stock[name.intern][0] = price
-        puts ("#{name}の値段を#{price}に変更しました。")
+        puts "#{name}の値段を#{price}に変更しました。"
       else
         puts <<~TEXT
           #{name}はまだ登録されていません。
@@ -51,7 +51,7 @@ class JuiceStocker
 
     def pull_stock(name)
         @stock[name.intern][1] -= 1
-        puts ("#{name}を購入しました。")
+        puts "#{name}を購入しました。"
     end
 
     def purchasable?(name,total_money)
@@ -65,7 +65,7 @@ class JuiceStocker
         next unless purchasable_item?(value,total_money)
         purchasable_names << key.to_s
       end
-      puts ("以下が購入可能です。")
+      puts "以下が購入可能です。"
       purchasable_names
     end
 
@@ -96,6 +96,10 @@ class JuiceStocker
 
     def enough_money?(item,total_money)
       total_money >= item[0]
+    end
+
+    def test_stock
+      @stock
     end
 
 end

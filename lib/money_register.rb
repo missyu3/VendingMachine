@@ -22,6 +22,7 @@ class MoneyRegister
     money = @total_money
     @total_money = 0
     puts "お釣りは#{money}円です。"
+    money
   end
 
   def add_sale(sale)
