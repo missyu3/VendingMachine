@@ -34,7 +34,7 @@ describe MoneyRegister do
         @register.insert(100)
         expect(@register.refund).to eq 1100
       end
-      it "返金後は投入金額が０になっているか" do
+      it "返金後は投入金額が0になっているか" do
         @register.insert(1000)
         @register.insert(100)
         @register.refund
@@ -48,7 +48,7 @@ describe MoneyRegister do
         @register.add_sale(120)
         expect(@register.total_money).to eq 980
       end
-      it "売上金の合計に売り上げきんが加算されているか" do
+      it "売上金の合計に売り上げ金が加算されているか" do
         @register.insert(1000)
         @register.add_sale(120)
         @register.add_sale(120)
