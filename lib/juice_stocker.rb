@@ -98,4 +98,8 @@ class JuiceStocker
       total_money >= item[0]
     end
 
+    def test_stock
+      @stock
+    end
+
 end
